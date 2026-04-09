@@ -34,6 +34,6 @@ pnpm dev
 
 ## 📌 Notes
 
-* Use `pnpm-workspace.yaml` to manage packages
-* Avoid installing dependencies inside subfolders manually
-* Prefer `workspace:*` for internal packages
+- Use `pnpm-workspace.yaml` to manage packages
+- Avoid installing dependencies inside subfolders manually
+- Prefer `workspace:*` for internal packages
