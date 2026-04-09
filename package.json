@@ -7,14 +7,16 @@
     "dev": "pnpm -r run dev",
     "build": "pnpm -r run build",
     "prepare": "husky",
-    "prettier-lint": "pnpx prettier --write \"./**/*.{js,jsx,ts,tsx,json,md,html,css}\"",
+    "prettier-lint": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,md,html,css}\"",
     "go-fmt": "gofmt -w ./apps/server/.."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "husky": "^9.1.7"
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.1"
   },
   "packageManager": "pnpm@10.25.0"
 }
