@@ -1,62 +1,135 @@
-import "../Styles/hero.css";
+
+import "../Styles/hero.css"
 
 export default function Hero() {
-  return (
-    <>
-      <div className="hero-container">
-        {/* Blue Planet */}
-        <div className="blue"></div>
+    return (
+       <>
 
-        {/* Video Layer */}
-        <video className="hero-video" autoPlay muted loop playsInline>
-          <source src="/space.mp4" type="video/mp4" />
-        </video>
+        <div className="hero-container">
 
-        {/* Red Planet */}
-        <div className="red"></div>
+      {/* Blue Planet */}
+      <div className="blue"></div>
 
-        {/* Explosions */}
-        <div className="explosion-left"></div>
-        <div className="explosion-right"></div>
+      {/* Video Layer */}
+      <video
+        className="hero-video"
+        autoPlay
+        muted
+        loop
+        playsInline
+      >
+        <source src="/space.mp4" type="video/mp4" />
+      </video>
 
-        <div className="planets-texture"></div>
+      {/* Red Planet */}
+      <div className="red"></div>
 
-        {/* Content */}
-        <h1>TechShastra</h1>
+      {/* Explosions */}
+      <div className="explosion-left"></div>
+      <div className="explosion-right"></div>
 
-        <div className="heroes-container">
-          <div className="hero-image1"></div>
-          <div className="hero-image2"></div>
-          <div className="hero-image3"></div>
-          <div className="hero-image4"></div>
-        </div>
+      <div className="planets-texture"></div>
+  
 
-        <div className="surface-texture"></div>
-      </div>
+      {/* Content */}
+      <h1>TechShastra</h1>
+
+
+
+      
+
+        
+    <div className="heroes-container">
+       <div className="hero-image1"></div>
+        <div className="hero-image2"></div>
+        <div className="hero-image3"></div>
+        <div className="hero-image4"></div>
+
+
+</div>
+
+
+    <div className="surface-texture">
+</div>
+ 
+    </div>
+
+
+     
+
+
+
+
 
       <div className="hero-about">
-        <div className="techshastra-about">
-          <h1>About TechShastra</h1>
-          <p>
-            TechShastra is a prestigious technical fest organized by{" "}
-            <span style={{ color: "yellow" }}>Netaji Subhas University</span> .
-            <br></br> It serves as a platform for students to showcase their
-            technical skills, creativity, ,<br></br>and innovation through
-            various competitions, workshops, and events.
-            <br></br>The fest attracts participants from across the country,
-            fostering a spirit of <br></br>camaraderie and healthy competition
-            among tech enthusiasts.
-            <br></br> With a wide range of activities spanning multiple domains
-            of technology,
-            <br></br>TechShastra aims to inspire and empower the next generation
-            of engineers.
-          </p>
 
-          <div className="metors"></div>
-        </div>
+
+       < div className="techshastra-about">
+
+       <h1>About TechShastra</h1>
+       <p>
+       TechShastra is a prestigious technical fest organized by <span style={{ color: 'yellow' }}>Netaji Subhas University</span> .
+       <br></br> It serves as a platform for students to showcase their technical skills, creativity, ,<br></br>and innovation 
+       through various competitions, workshops, and events. 
+       <br></br>The fest attracts participants from across the country, fostering a spirit of <br></br>camaraderie and healthy competition among tech enthusiasts.
+       <br></br> With a wide range of activities spanning multiple domains of technology, 
+       <br></br><span style={{ color: 'yellow' , fontWeight: 'bold' , zIndex: 7}}>TechShastra aims to inspire and empower the next generation of engineers.</span>
+       </p>
+         
+         <div className="metors"></div>
+       
+       </div>
+    </div>
+
+
+    <div className="event-details">
+     
+    </div>
+      
+         <div className="fire-video">
+
+      <video
+        className="bg-video"
+        autoPlay
+        muted
+        loop
+        playsInline
+      >
+        <source src="/black-hole.mp4" type="video/mp4" />
+
+        
+      </video>
+       
+       
+       <h1 className="heading">Lets Get Started</h1>
+
+
+       <div className="event-description">
+       <p>
+         Join us for an exciting journey into the 
+       </p>
+        <p>world
+          
+           of technology and  innovation.</p>
+
       </div>
+     </div>
 
-      <div className="event-details"></div>
-    </>
-  );
+
+      
+    
+
+
+
+
+
+
+
+    
+       
+       </>  
+       
+    
+    
+    )
 }

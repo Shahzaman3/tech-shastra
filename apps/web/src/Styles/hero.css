@@ -1,9 +1,9 @@
-body {
+body{
   margin: 0;
   padding: 0;
-  scrollbar-width: none; /* Firefox */
+   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;
-  overflow-x: hidden;
+  overflow-X:hidden;
 }
 
 body::-webkit-scrollbar {
@@ -12,15 +12,18 @@ body::-webkit-scrollbar {
 
 html {
   scroll-behavior: smooth;
+  
 }
 
-@font-face {
-  font-family: "Heading-font";
-  src: url("../assets/fonts/Orbitron-Bold.4d17defd.woff2") format("woff2");
 
+@font-face {
+  font-family: 'Heading-font';
+  src: url('../assets/fonts/Orbitron-Bold.4d17defd.woff2') format('woff2');
+      
   font-weight: normal;
   font-style: normal;
 }
+
 
 .hero-container {
   position: relative;
@@ -56,7 +59,7 @@ html {
   background: url("/red-planet.webp") center/cover no-repeat;
 
   mix-blend-mode: lighten;
-  filter: brightness(1.2) contrast(1.1);
+   filter: brightness(1.2) contrast(1.1);
   filter: blur(0.2px);
   -webkit-mask-image: linear-gradient(to left, black 60%, transparent 100%);
   mask-image: linear-gradient(to left, black 60%, transparent 100%);
@@ -64,13 +67,17 @@ html {
   z-index: 3;
 }
 
-.planets-texture {
+
+
+.planets-texture{
   position: absolute;
   inset: 0;
   background: url("/planets-texture.webp") center/cover no-repeat;
-
+   
   z-index: 2;
 }
+
+
 
 .explosion-left {
   position: absolute;
@@ -95,10 +102,11 @@ html {
   transform: translate(-50%, -50%);
   font-size: 3.4rem;
   font-weight: bold;
-  font-family: "Heading-font", sans-serif;
+  font-family: 'Heading-font', sans-serif;
   z-index: 5;
   color: white;
 }
+
 
 @keyframes zoomSoft {
   0% {
@@ -124,14 +132,17 @@ html {
   }
 }
 
+
+
+
 .planets-texture {
   animation: zoomSoft 8s ease-in-out infinite;
 }
 
-.explosion-left,
-.explosion-right {
+.explosion-left, .explosion-right {
   animation: float 20s linear infinite;
 }
+
 
 .hero-about {
   position: relative;
@@ -139,11 +150,11 @@ html {
   left: 0;
   width: 120%;
   height: 100vh;
-  background: url("/ash-bottom.webp") no-repeat;
+  background:url("/ash-bottom.webp") no-repeat;
   background-size: contain;
-  margin-top: -30vh;
+  margin-top: -30vh; 
   margin-right: 3%;
-
+ 
   /* overlaps with the hero section */
   z-index: 3;
   overflow: hidden;
@@ -162,25 +173,27 @@ html {
   margin-top: 85vh; /* overlaps with the hero section */
   position: relative;
   width: 100%;
-  height: 70vh;
+   height: 70vh;
   inset: 0;
   background: url("/surface-texture.webp") center/cover no-repeat;
   z-index: 2;
 }
 
-.heroes-container {
+
+.heroes-container{
   display: flex;
-  position: absolute;
+  position:absolute;
   margin-top: 88vh;
   margin-left: 15%;
   /* overlaps with the hero section */
-  width: 70%;
-  height: 40%;
-
+  width:70%;
+  height:40%;
+  
   z-index: 3;
 }
 
-.hero-image1 {
+
+.hero-image1{
   width: 20%;
   height: 100%;
   margin-top: 3%;
@@ -188,18 +201,18 @@ html {
   background: url("/hero-1.webp") center/cover no-repeat;
 }
 
-.hero-image2 {
+.hero-image2{
   position: absolute;
   display: flex;
   width: 25%;
   height: 100%;
   margin-top: 1%;
-  margin-left: 25%;
+ margin-left: 25%;
 
   background: url("/hero-2.webp") center/cover no-repeat;
 }
 
-.hero-image3 {
+.hero-image3{
   position: absolute;
   width: 21%;
   height: 100%;
@@ -208,60 +221,36 @@ html {
   background: url("/hero-3.webp") center/cover no-repeat;
 }
 
-.hero-image4 {
+.hero-image4{
   position: absolute;
-  margin-left: 63%;
+   margin-left: 63%;
   width: 25%;
   margin-top: 5%;
   height: 100%;
   background: url("/hero-4.webp") center/cover no-repeat;
 }
 @keyframes breathe1 {
-  0% {
-    transform: scale(1) translateY(0px);
-  }
-  50% {
-    transform: scale(1.02) translateY(-2px);
-  }
-  100% {
-    transform: scale(1) translateY(0px);
-  }
+  0%   { transform: scale(1) translateY(0px); }
+  50%  { transform: scale(1.02) translateY(-2px); }
+  100% { transform: scale(1) translateY(0px); }
 }
 
 @keyframes breathe2 {
-  0% {
-    transform: scale(1) translateY(0px);
-  }
-  50% {
-    transform: scale(1.025) translateY(-3px);
-  }
-  100% {
-    transform: scale(1) translateY(0px);
-  }
+  0%   { transform: scale(1) translateY(0px); }
+  50%  { transform: scale(1.025) translateY(-3px); }
+  100% { transform: scale(1) translateY(0px); }
 }
 
 @keyframes breathe3 {
-  0% {
-    transform: scale(1) translateY(0px);
-  }
-  50% {
-    transform: scale(1.018) translateY(-1.5px);
-  }
-  100% {
-    transform: scale(1) translateY(0px);
-  }
+  0%   { transform: scale(1) translateY(0px); }
+  50%  { transform: scale(1.018) translateY(-1.5px); }
+  100% { transform: scale(1) translateY(0px); }
 }
 
 @keyframes breathe4 {
-  0% {
-    transform: scale(1) translateY(0px);
-  }
-  50% {
-    transform: scale(1.03) translateY(-2.5px);
-  }
-  100% {
-    transform: scale(1) translateY(0px);
-  }
+  0%   { transform: scale(1) translateY(0px); }
+  50%  { transform: scale(1.03) translateY(-2.5px); }
+  100% { transform: scale(1) translateY(0px); }
 }
 
 .hero-image1 {
@@ -280,42 +269,107 @@ html {
   animation: breathe4 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-.techshastra-about {
+
+
+.techshastra-about{
   position: relative;
   margin-top: 30vh;
-  width: 100%;
+  width:100%;
   height: 70vh;
-  background: url("/about-bg.webp") center/cover no-repeat;
-  z-index: 5;
+  background:
+  url("/about-bg.webp") center/cover no-repeat;
+ z-index: 5;
+
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
 }
 
-.techshastra-about h1 {
+.techshastra-about h1{
   position: relative;
   top: 10%;
   left: 81%;
   transform: translate(-50%, -50%);
   font-size: 1.8rem;
   font-weight: bold;
-  font-family: "Heading-font", sans-serif;
+  font-family: 'Heading-font', sans-serif;
   z-index: 6;
   color: white;
 }
 
-.techshastra-about p {
+.techshastra-about p{
   position: relative;
   top: 25%;
   left: 73%;
   transform: translate(-50%, -50%);
   font-size: 1rem;
-  font-family: sans-serif;
+  font-family:  sans-serif;
   z-index: 1;
   color: white;
   line-height: 1.6;
 }
-.metors {
+.metors{
   margin-top: 30vh;
   position: absolute;
   inset: 0;
   background: url("/meteors.webp") center/cover no-repeat;
-  z-index: 6;
+  z-index: 6
+}
+
+
+.event-details{
+  position: absolute;
+  
+  width:100%;
+  margin-top: -70vh;
+  height: 70vh;
+  background:
+  url("/white-fog.webp") center/cover no-repeat;
+  
+ z-index: 3;
+  -webkit-mask-image: linear-gradient(to top, black 50%, transparent 100%);
+  mask-image: linear-gradient(to top, black 50%, transparent 100%);
+}
+
+.bg-video{
+  margin:0%;
+  padding:0%;
+  position: relative;
+  inset: 0;
+  width:80%;
+  border-radius: 20px;
+  height: 80vh;
+  margin-bottom: 10vh;
+  margin-left: 10%;
+  object-fit: cover;
+ 
+ 
+  
+
+  z-index: 1;
+}
+
+.heading  {
+  position: absolute;
+  margin-top: 210vh;
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Heading-font', sans-serif;
+  z-index: 3;
+  color: rgb(222, 217, 217);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.event-description{
+  position: absolute;
+  margin-top: 210vh;
+  font-size: 1rem;
+  font-weight: normal;
+  font-family:  sans-serif;
+  z-index: 3;
+  color: rgb(91, 87, 87);
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
