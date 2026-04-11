@@ -1,135 +1,182 @@
-
-import "../Styles/hero.css"
+import { useLayoutEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { useState } from "react";
+import "../Styles/hero.css";
+import Schedule from "../Components/schedule";
 
 export default function Hero() {
-    return (
-       <>
+  const [text, setText] = useState(
+    `Different domains, endless possibilities.
+Learn, build, and innovate.
+Compete with the best minds.
+Discover your true potential.`,
+  );
 
-        <div className="hero-container">
+  const [heading, setHeading] = useState("Explore Domains");
 
-      {/* Blue Planet */}
-      <div className="blue"></div>
+  const containerRef = useRef();
+  const headingRef = useRef();
+  const blueRef = useRef();
+  const redRef = useRef();
+  const heroesRef = useRef([]);
 
-      {/* Video Layer */}
-      <video
-        className="hero-video"
-        autoPlay
-        muted
-        loop
-        playsInline
-      >
-        <source src="/space.mp4" type="video/mp4" />
-      </video>
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      const tl = gsap.timeline();
 
-      {/* Red Planet */}
-      <div className="red"></div>
+      // Heading
+      tl.from(headingRef.current, {
+        y: -20,
 
-      {/* Explosions */}
-      <div className="explosion-left"></div>
-      <div className="explosion-right"></div>
+        opacity: 1,
+        duration: 1,
+      });
 
-      <div className="planets-texture"></div>
-  
+      // Hero images
+      tl.from(heroesRef.current, {
+        y: 100,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 1,
+      });
+    }, containerRef);
 
-      {/* Content */}
-      <h1>TechShastra</h1>
+    return () => ctx.revert();
+  }, []);
 
+  return (
+    <>
+      <div className="hero-container" ref={containerRef}>
+        {/* Blue Planet */}
+        <div className="blue" ref={blueRef}></div>
 
+        {/* Video Layer */}
 
-      
+        {/* Red Planet */}
+        <div className="red" ref={redRef}></div>
 
-        
-    <div className="heroes-container">
-       <div className="hero-image1"></div>
-        <div className="hero-image2"></div>
-        <div className="hero-image3"></div>
-        <div className="hero-image4"></div>
+        {/* Explosions */}
+        <div className="explosion-left"></div>
+        <div className="explosion-right"></div>
 
+        <div className="planets-texture"></div>
 
-</div>
+        {/* Content */}
+        <h1 ref={headingRef}>TechShastra</h1>
 
+        <div className="heroes-container">
+          {[1, 2, 3, 4].map((_, i) => (
+            <div
+              key={i}
+              className={`hero-image${i + 1}`}
+              ref={(el) => (heroesRef.current[i] = el)}
+            ></div>
+          ))}
+        </div>
 
-    <div className="surface-texture">
-</div>
- 
-    </div>
-
-
-     
-
-
-
-
+        <div className="surface-texture"></div>
+      </div>
 
       <div className="hero-about">
+        <div className="techshastra-about">
+          <h1>About TechShastra</h1>
+          <p>
+            TechShastra is a prestigious technical fest organized by{" "}
+            <span style={{ color: "yellow" }}>Netaji Subhas University</span> .
+            <br></br> It serves as a platform for students to showcase their
+            technical skills, creativity, ,<br></br>and innovation through
+            various competitions, workshops, and events.
+            <br></br> With a wide range of activities spanning multiple domains
+            of technology,
+            <br></br>
+            <span style={{ color: "yellow", fontWeight: "bold", zIndex: 7 }}>
+              TechShastra aims to inspire and empower the next generation of
+              engineers.
+            </span>
+          </p>
 
-
-       < div className="techshastra-about">
-
-       <h1>About TechShastra</h1>
-       <p>
-       TechShastra is a prestigious technical fest organized by <span style={{ color: 'yellow' }}>Netaji Subhas University</span> .
-       <br></br> It serves as a platform for students to showcase their technical skills, creativity, ,<br></br>and innovation 
-       through various competitions, workshops, and events. 
-       <br></br>The fest attracts participants from across the country, fostering a spirit of <br></br>camaraderie and healthy competition among tech enthusiasts.
-       <br></br> With a wide range of activities spanning multiple domains of technology, 
-       <br></br><span style={{ color: 'yellow' , fontWeight: 'bold' , zIndex: 7}}>TechShastra aims to inspire and empower the next generation of engineers.</span>
-       </p>
-         
-         <div className="metors"></div>
-       
-       </div>
-    </div>
-
-
-    <div className="event-details">
-     
-    </div>
-      
-         <div className="fire-video">
-
-      <video
-        className="bg-video"
-        autoPlay
-        muted
-        loop
-        playsInline
-      >
-        <source src="/black-hole.mp4" type="video/mp4" />
-
-        
-      </video>
-       
-       
-       <h1 className="heading">Lets Get Started</h1>
-
-
-       <div className="event-description">
-       <p>
-         Join us for an exciting journey into the 
-       </p>
-        <p>world
-          
-           of technology and  innovation.</p>
-
+          <div className="metors"></div>
+        </div>
       </div>
-     </div>
 
+      <div className="event-details"></div>
 
-      
-    
+      <Schedule />
 
+      <div class="techfest-domains">
+        <h1>{heading}</h1>
+        <p>{text}</p>
 
+        <div className="ashimage"></div>
 
+        <div className="heroes-container1">
+          <div
+            className="hero1-image1"
+            onMouseEnter={() => {
+              setHeading("Computer Science");
+              setText(`Build intelligent systems and innovative applications.
+Explore coding, AI, and software development.
+Shape the future through technology.`);
+            }}
+            onMouseLeave={() => {
+              setHeading("Explore Domains");
+              setText(`Different domains, endless possibilities.
+Learn, build, and innovate.
+Compete with the best minds.
+Discover your true potential.`);
+            }}
+          ></div>
+          <div
+            className="hero1-image2"
+            onMouseEnter={() => {
+              setHeading("Mechanical Engineering");
+              setText(`Design machines and bring ideas to life.
+Work with motion, energy, and real-world systems.
+Turn concepts into powerful creations.`);
+            }}
+            onMouseLeave={() => {
+              setHeading("Explore Domains");
+              setText(`Different domains, endless possibilities.
+Learn, build, and innovate.
+Compete with the best minds.
+Discover your true potential.`);
+            }}
+          ></div>
 
-
-
-
-    
-       
-       </>  
-       
-    
-    
-    )
+          <div
+            className="hero1-image3"
+            onMouseEnter={() => {
+              setHeading("Civil Engineering");
+              setText(`Create structures that shape the world around us.
+From bridges to cities, build lasting impact.
+Engineer the foundation of modern life.`);
+            }}
+            onMouseLeave={() => {
+              setHeading("Explore Domains");
+              setText(`Different domains, endless possibilities.
+Learn, build, and innovate.
+Compete with the best minds.
+Discover your true potential.`);
+            }}
+          ></div>
+          <div
+            className="hero1-image4"
+            onMouseEnter={() => {
+              setHeading("Electronics");
+              setText(`Work with circuits, signals, and smart devices.
+Power communication and modern technology.
+Drive innovation in the digital world.`);
+            }}
+            onMouseLeave={() => {
+              setHeading("Explore Domains");
+              setText(`Different domains, endless possibilities.
+Learn, build, and innovate.
+Compete with the best minds.
+Discover your true potential.`);
+            }}
+          ></div>
+        </div>
+      </div>
+    </>
+  );
 }
