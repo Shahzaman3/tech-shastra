@@ -1,7 +1,15 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
   -ms-overflow-style: none;
   overflow-x: hidden;
 }
@@ -17,17 +25,25 @@ html {
 @font-face {
   font-family: "Heading-font";
   src: url("../assets/fonts/Orbitron-Bold.4d17defd.woff2") format("woff2");
-
   font-weight: normal;
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Body-font";
+  src: url("../assets/fonts/Roboto-Regular.8e0c9a1b.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ========================
+   HERO CONTAINER
+======================== */
 .hero-container {
   position: relative;
   width: 100%;
   height: 160vh;
   overflow: hidden;
-
   background: url("/bg-texture.webp") center/cover no-repeat;
 }
 
@@ -44,23 +60,18 @@ html {
   width: 100%;
   height: 100%;
   object-fit: cover;
-
   z-index: 2;
-  opacity: 1.6; /* adjust blending */
+  opacity: 1.6;
 }
 
 .red {
   position: absolute;
   inset: 0;
-
   background: url("/red-planet.webp") center/cover no-repeat;
-
   mix-blend-mode: lighten;
-  filter: brightness(1.2) contrast(1.1);
-  filter: blur(0.2px);
+  filter: brightness(1.2) contrast(1.1) blur(0.2px);
   -webkit-mask-image: linear-gradient(to left, black 60%, transparent 100%);
   mask-image: linear-gradient(to left, black 60%, transparent 100%);
-
   z-index: 3;
 }
 
@@ -68,8 +79,8 @@ html {
   position: absolute;
   inset: 0;
   background: url("/planets-texture.webp") center/cover no-repeat;
-
   z-index: 2;
+  animation: zoomSoft 8s ease-in-out infinite;
 }
 
 .explosion-left {
@@ -78,6 +89,7 @@ html {
   background: url("/left-explosion.webp") left center no-repeat;
   background-size: contain;
   z-index: 4;
+  animation: float 20s linear infinite;
 }
 
 .explosion-right {
@@ -86,6 +98,16 @@ html {
   background: url("/right-explosion.webp") right center no-repeat;
   background-size: contain;
   z-index: 4;
+  animation: float 20s linear infinite;
+}
+
+.planets-texture,
+.hero-video,
+.blue,
+.red,
+.explosion-left,
+.explosion-right {
+  height: 100vh;
 }
 
 .hero-container h1 {
@@ -93,13 +115,18 @@ html {
   top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 3.4rem;
+  font-size: clamp(2rem, 5vw, 3.4rem);
   font-weight: bold;
   font-family: "Heading-font", sans-serif;
   z-index: 5;
   color: white;
+  text-align: center;
+  width: 90%;
 }
 
+/* ========================
+   ANIMATIONS
+======================== */
 @keyframes zoomSoft {
   0% {
     transform: scale(1);
@@ -124,98 +151,6 @@ html {
   }
 }
 
-.planets-texture {
-  animation: zoomSoft 8s ease-in-out infinite;
-}
-
-.explosion-left,
-.explosion-right {
-  animation: float 20s linear infinite;
-}
-
-.hero-about {
-  position: relative;
-  bottom: 0;
-  left: 0;
-  width: 120%;
-  height: 100vh;
-  background: url("/ash-bottom.webp") no-repeat;
-  background-size: contain;
-  margin-top: -30vh;
-  margin-right: 3%;
-
-  /* overlaps with the hero section */
-  z-index: 3;
-  overflow: hidden;
-}
-
-.planets-texture,
-.hero-video,
-.blue,
-.red,
-.explosion-left,
-.explosion-right {
-  height: 100vh; /* sticks to original screen height */
-}
-
-.surface-texture {
-  margin-top: 85vh; /* overlaps with the hero section */
-  position: relative;
-  width: 100%;
-  height: 70vh;
-  inset: 0;
-  background: url("/surface-texture.webp") center/cover no-repeat;
-  z-index: 2;
-}
-
-.heroes-container {
-  display: flex;
-  position: absolute;
-  margin-top: 88vh;
-  margin-left: 15%;
-  /* overlaps with the hero section */
-  width: 70%;
-  height: 40%;
-
-  z-index: 3;
-}
-
-.hero-image1 {
-  width: 20%;
-  height: 100%;
-  margin-top: 3%;
-  margin-left: 10%;
-  background: url("/hero-1.webp") center/cover no-repeat;
-}
-
-.hero-image2 {
-  position: absolute;
-  display: flex;
-  width: 25%;
-  height: 100%;
-  margin-top: 1%;
-  margin-left: 25%;
-
-  background: url("/hero-2.webp") center/cover no-repeat;
-}
-
-.hero-image3 {
-  position: absolute;
-  width: 21%;
-  height: 100%;
-  margin-left: 45%;
-  margin-top: 4%;
-  background: url("/hero-3.webp") center/cover no-repeat;
-}
-
-.hero-image4 {
-  position: absolute;
-  margin-left: 63%;
-  width: 25%;
-  margin-top: 5%;
-  height: 100%;
-  background: url("/hero-4.webp") center/cover no-repeat;
-}
 @keyframes breathe1 {
   0% {
     transform: scale(1) translateY(0px);
@@ -264,22 +199,89 @@ html {
   }
 }
 
+/* ========================
+   HERO ABOUT
+======================== */
+.hero-about {
+  position: relative;
+  width: 120%;
+  height: 100vh;
+  background: url("/ash-bottom.webp") no-repeat;
+  background-size: contain;
+  margin-top: -30vh;
+  margin-right: 3%;
+  z-index: 3;
+  overflow: hidden;
+}
+
+/* ========================
+   SURFACE TEXTURE
+======================== */
+.surface-texture {
+  margin-top: 85vh;
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  background: url("/surface-texture.webp") center/cover no-repeat;
+  z-index: 2;
+}
+
+/* ========================
+   HEROES CONTAINER (section 1)
+======================== */
+.heroes-container {
+  display: flex;
+  position: absolute;
+  margin-top: 88vh;
+  margin-left: 15%;
+  width: 70%;
+  height: 40%;
+  z-index: 3;
+}
+
 .hero-image1 {
+  width: 20%;
+  height: 100%;
+  margin-top: 3%;
+  margin-left: 10%;
+  background: url("/hero-1.webp") center/cover no-repeat;
   animation: breathe1 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .hero-image2 {
-  animation: breathe2 3.2s cubic-bezier(0.4, 0, 0.6, 1) infinite; /* slightly longer */
+  position: absolute;
+  display: flex;
+  width: 25%;
+  height: 100%;
+  margin-top: 1%;
+  margin-left: 25%;
+  background: url("/hero-2.webp") center/cover no-repeat;
+  animation: breathe2 3.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .hero-image3 {
-  animation: breathe3 2.8s cubic-bezier(0.4, 0, 0.6, 1) infinite; /* slightly shorter */
+  position: absolute;
+  width: 21%;
+  height: 100%;
+  margin-left: 45%;
+  margin-top: 5%;
+  background: url("/hero-3.webp") center/cover no-repeat;
+  animation: breathe3 2.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .hero-image4 {
+  position: absolute;
+  margin-left: 63%;
+  width: 25%;
+  margin-top: 5%;
+  height: 100%;
+  background: url("/hero-4.webp") center/cover no-repeat;
   animation: breathe4 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+/* ========================
+   TECHSHASTRA ABOUT
+======================== */
 .techshastra-about {
   position: relative;
   margin-top: 30vh;
@@ -287,7 +289,6 @@ html {
   height: 70vh;
   background: url("/about-bg.webp") center/cover no-repeat;
   z-index: 5;
-
   -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
 }
@@ -295,9 +296,9 @@ html {
 .techshastra-about h1 {
   position: relative;
   top: 10%;
-  left: 81%;
+  left: 80%;
   transform: translate(-50%, -50%);
-  font-size: 1.8rem;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
   font-weight: bold;
   font-family: "Heading-font", sans-serif;
   z-index: 6;
@@ -309,12 +310,16 @@ html {
   top: 25%;
   left: 73%;
   transform: translate(-50%, -50%);
-  font-size: 1rem;
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
   font-family: sans-serif;
   z-index: 1;
   color: white;
   line-height: 1.6;
 }
+
+/* ========================
+   METEORS
+======================== */
 .metors {
   margin-top: 30vh;
   position: absolute;
@@ -323,38 +328,37 @@ html {
   z-index: 6;
 }
 
+/* ========================
+   EVENT DETAILS
+======================== */
 .event-details {
   position: absolute;
-
   width: 100%;
   margin-top: -70vh;
   height: 70vh;
   background: url("/white-fog.webp") center/cover no-repeat;
-
   z-index: 3;
   -webkit-mask-image: linear-gradient(to top, black 50%, transparent 100%);
   mask-image: linear-gradient(to top, black 50%, transparent 100%);
 }
 
 .bg-video {
-  margin: 0%;
-  padding: 0%;
+  margin: 0;
+  padding: 0;
   position: relative;
-  inset: 0;
   width: 80%;
   border-radius: 20px;
   height: 80vh;
   margin-bottom: 10vh;
   margin-left: 10%;
   object-fit: cover;
-
   z-index: 1;
 }
 
 .heading {
   position: absolute;
   margin-top: 210vh;
-  font-size: 2rem;
+  font-size: clamp(1.4rem, 3vw, 2rem);
   font-weight: bold;
   font-family: "Heading-font", sans-serif;
   z-index: 3;
@@ -362,12 +366,14 @@ html {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
+  width: 90%;
 }
 
 .event-description {
   position: absolute;
   margin-top: 210vh;
-  font-size: 1rem;
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
   font-weight: normal;
   font-family: sans-serif;
   z-index: 3;
@@ -375,4 +381,468 @@ html {
   top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
+  width: 90%;
+}
+
+/* ========================
+   TECHFEST DOMAINS
+======================== */
+.techfest-domains {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Blend the boundary perfectly into the section above it */
+.techfest-domains::before {
+  content: "";
+  position: absolute;
+  top: -250px;
+  left: 0;
+  width: 100%;
+  height: 250px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.7) 60%,
+    #ffffff 100%
+  );
+  z-index: 10;
+  pointer-events: none;
+}
+
+.ashimage {
+  margin-top: 70vh;
+  background: url("/ash-bottom.webp") center/cover no-repeat;
+  filter: saturate(0) contrast(0.8);
+  width: 100%;
+  height: 30vh;
+  z-index: 7;
+}
+
+.heroes-container1 {
+  display: flex;
+  position: absolute;
+  margin-top: 20vh;
+  width: 65%;
+  height: 75%;
+  z-index: 3;
+}
+
+.hero1-image1 {
+  width: 30%;
+  height: 100%;
+  margin-top: 4%;
+  filter: saturate(0) contrast(0.8);
+  background: url("/hero-1.webp") center/cover no-repeat;
+}
+
+.hero1-image2 {
+  position: absolute;
+  display: flex;
+  width: 35%;
+  height: 100%;
+  margin-top: 4%;
+  margin-left: 20%;
+  filter: saturate(0) contrast(0.8);
+  background: url("/hero-2.webp") center/cover no-repeat;
+}
+
+.hero1-image3 {
+  position: absolute;
+  width: 25%;
+  height: 100%;
+  margin-left: 45%;
+  margin-top: 4%;
+  filter: saturate(0) contrast(0.8);
+  background: url("/hero-3.webp") center/cover no-repeat;
+}
+
+.hero1-image4 {
+  position: absolute;
+  margin-left: 64%;
+  width: 40%;
+  margin-top: 4%;
+  height: 100%;
+  filter: saturate(0) contrast(0.8);
+  background: url("/hero-4.webp") center/cover no-repeat;
+}
+
+.hero1-image1:hover {
+  animation: breathe1 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  filter: saturate(1) contrast(1);
+}
+
+.hero1-image2:hover {
+  animation: breathe2 3.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  filter: saturate(1) contrast(1);
+}
+
+.hero1-image3:hover {
+  animation: breathe3 2.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  filter: saturate(1) contrast(1);
+}
+
+.hero1-image4:hover {
+  animation: breathe4 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  filter: saturate(1) contrast(1);
+}
+
+.techfest-domains h1 {
+  transition: 0.3s ease;
+  font-size: clamp(1rem, 2.5vw, 2.5rem);
+  white-space: nowrap;
+  position: absolute;
+  text-align: center;
+  margin-top: 30vh;
+  font-weight: bold;
+  font-family: "Heading-font", sans-serif;
+  width: 30%;
+  color: red;
+  margin-left: 65%;
+  z-index: 1;
+}
+
+.techfest-domains p {
+  transition: 0.3s ease;
+  font-size: clamp(0.7rem, 1.2vw, 1.5rem);
+  white-space: pre-line;
+  position: absolute;
+  text-align: left;
+  margin-top: 40vh;
+  font-weight: normal;
+  font-family: "Body-font", sans-serif;
+  width: 40%;
+  color: rgb(0, 0, 0);
+  margin-left: 68%;
+  z-index: 1;
+}
+
+.planetpurple {
+  position: absolute;
+
+  width: 100%;
+  height: 160vh;
+  background: url("/planet-1.webp") center/cover no-repeat;
+}
+
+.black-cloud {
+  position: absolute;
+
+  width: 100%;
+  height: 20vh;
+  background: url("/black-cloud.webp");
+
+  z-index: 13;
+}
+
+.hero-video {
+  position: absolute;
+  margin-top: 210vh;
+  margin-left: 20%;
+  width: 60%;
+  height: 20vh;
+  background: red;
+  z-index: 60;
+}
+
+/* ========================
+   MOBILE — max-width: 768px
+======================== */
+@media (max-width: 768px) {
+  /* Disable heavy animations on mobile */
+  .explosion-left,
+  .explosion-right {
+    animation: none !important;
+  }
+
+  /* ---- Hero Container ---- */
+  .hero-container {
+    height: 100vh;
+    width: 100%;
+  }
+
+  .hero-container h1 {
+    font-size: clamp(2.2rem, 8vw, 3.8rem);
+    top: 35%;
+    left: 50%;
+    width: 90%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .blue,
+  .red {
+    height: 60vh;
+    margin-top: 10%;
+  }
+
+  .planets-texture {
+    height: 30vh;
+    width: 100%;
+    margin-top: 80%;
+  }
+
+  .explosion-left {
+    background-size: 100%;
+    background-position: left center;
+    height: 40vh;
+    width: 100%;
+    margin: 0;
+    top: 20vh;
+    left: 0;
+  }
+
+  .explosion-right {
+    background-size: 80%;
+    background-position: center center;
+    height: 40vh;
+    width: 100%;
+    margin: 0;
+    top: 20vh;
+    left: 0;
+  }
+
+  /* ---- Hero About ---- */
+  .hero-about {
+    background: url("/heroes--mobile.webp") center/contain no-repeat;
+    width: 100%;
+    margin-top: -70vh;
+  }
+
+  .hero-about h1 {
+    position: absolute;
+    transform: translate(-50px);
+    text-align: left;
+    top: auto;
+    left: auto;
+    transform: none;
+    font-size: clamp(3rem, 6vw, 1.9rem);
+    width: 80%;
+    text-align: center;
+    padding: 5% 5% 0;
+    color: white;
+  }
+
+  .hero-about p {
+    width: 40%;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 3.75;
+    font-weight: 100;
+    max-width: 340px;
+  }
+
+  /* ---- Surface Texture ---- */
+  .surface-texture {
+    height: 20vh;
+    margin-top: 50%;
+    z-index: 2;
+  }
+
+  /* ---- Heroes Container (section 1) ---- */
+  .heroes-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    margin: 0 auto;
+    width: 100%;
+    height: 40vh;
+    z-index: 3;
+  }
+
+  .hero-image1,
+  .hero-image2,
+  .hero-image3,
+  .hero-image4 {
+    display: none;
+  }
+
+  /* ---- Techshastra About ---- */
+  .techshastra-about {
+    height: auto;
+    min-height: 40vh;
+    margin-top: 60vh;
+    padding-bottom: 5vh;
+  }
+
+  .techshastra-about h1 {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 8%;
+    font-size: clamp(1.2rem, 5vw, 1.6rem);
+  }
+
+  .techshastra-about p {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    text-align: center;
+    width: 85%;
+    margin: 4% auto 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  /* ---- Meteors ---- */
+  .metors {
+    height: 25vh;
+    margin-top: 5vh;
+    z-index: 6;
+  }
+
+  /* ---- Event Details ---- */
+  .event-details {
+    position: relative;
+    width: 100%;
+    height: 20vh;
+    margin-top: 0;
+    opacity: 0.3;
+    -webkit-mask-image: linear-gradient(to top, black 50%, transparent 100%);
+    mask-image: linear-gradient(to top, black 50%, transparent 100%);
+  }
+
+  /* ---- Video ---- */
+  .bg-video {
+    display: none !important;
+  }
+
+  /* ---- Headings ---- */
+  .heading {
+    position: relative;
+    margin-top: 0;
+    top: auto;
+    left: auto;
+    transform: none;
+    text-align: center;
+    width: 90%;
+    margin: 5vh auto 0;
+    font-size: clamp(1.2rem, 5vw, 1.6rem);
+  }
+
+  .event-description {
+    position: relative;
+    margin-top: 0;
+    top: auto;
+    left: auto;
+    transform: none;
+    text-align: center;
+    width: 88%;
+    margin: 2vh auto 5vh;
+    font-size: 0.9rem;
+  }
+
+  /* ---- Techfest Domains ---- */
+  .techfest-domains {
+    position: relative;
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+    margin-top: 0;
+    padding-bottom: 5vh;
+  }
+
+  .techfest-domains h1 {
+    position: relative;
+    margin: 5vh auto 0;
+    left: auto;
+    width: 90%;
+    margin-left: auto;
+    font-size: clamp(1.2rem, 5vw, 1.6rem);
+    text-align: center;
+    white-space: normal;
+    color: red;
+  }
+
+  .techfest-domains p {
+    position: relative;
+    margin: 2vh auto 0;
+    left: auto;
+    width: 88%;
+    margin-left: auto;
+    font-size: 0.9rem;
+    text-align: center;
+    white-space: normal;
+  }
+
+  /* ---- Ash Image ---- */
+  .ashimage {
+    background: url("/ash-bottom--mobile.webp") center/contain no-repeat;
+    margin-top: 0;
+    width: 100%;
+    height: 90vh;
+    z-index: 7;
+    pointer-events: none;
+  }
+
+  /* ---- Heroes Container 1 ---- */
+  .heroes-container1 {
+    position: relative;
+    display: flex;
+    margin: -80vh auto 0;
+    width: 90%;
+    height: 35vh;
+    z-index: 3;
+  }
+
+  .hero1-image1,
+  .hero1-image2,
+  .hero1-image3,
+  .hero1-image4 {
+    position: relative;
+    margin: 0;
+  }
+
+  .hero1-image1 {
+    width: 30%;
+    height: 100%;
+    margin-top: 4%;
+  }
+
+  .hero1-image2 {
+    position: absolute;
+    width: 35%;
+    height: 100%;
+    margin-top: 4%;
+    margin-left: 20%;
+  }
+
+  .hero1-image3 {
+    position: absolute;
+
+    width: 25%;
+    height: 100%;
+    margin-left: 45%;
+    margin-top: 4%;
+  }
+
+  .hero1-image4 {
+    position: absolute;
+    margin-left: 64%;
+    width: 40%;
+    margin-top: 4%;
+    height: 100%;
+  }
+
+  .hero-video {
+    position: absolute;
+    width: 75%;
+    margin-right: 2%;
+    transform: translate(-35px);
+    margin-top: 135vh;
+  }
+
+  .planetpurple {
+    margin-top: -30vh;
+  }
 }
