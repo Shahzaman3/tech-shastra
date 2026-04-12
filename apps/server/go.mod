@@ -1,3 +1,3 @@
 module github.com/TECH-NSU/tech-shastra
 
-go 1.26.1
+go 1.24.1
