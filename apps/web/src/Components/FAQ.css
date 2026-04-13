@@ -1,13 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap");
+
 /* ========================
    FAQ SECTION
 ======================== */
 .faq-section {
   width: 100%;
-  background: #060d1f;
+  background: #000000;
   padding: 80px 6% 60px;
   position: relative;
   z-index: 5;
   overflow: hidden;
+}
+
+/* Full-coverage space background via pseudo-element */
+.faq-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/roadmap-bg.webp") center / cover no-repeat;
+  opacity: 1;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Ensure all children sit above the ::after bg layer */
+.faq-section > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* ── Robot images beside heading ── */
@@ -69,16 +88,15 @@
 }
 
 .faq-heading h2 {
-  font-family: "Heading-font", "Orbitron", sans-serif;
-  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-family: "Montserrat", "Heading-font", sans-serif;
+  font-size: clamp(3rem, 9vw, 7rem);
   font-weight: 900;
-  text-transform: uppercase;
   letter-spacing: 0.08em;
   background: linear-gradient(90deg, #ff3d8f, #ff6b3d);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 0 6px rgba(255, 80, 120, 0.3));
+  filter: drop-shadow(0 0 6px rgba(255, 80, 120, 0.25));
   margin: 0;
 }
 
@@ -102,7 +120,9 @@
 
 /* ── Single Item ── */
 .faq-item {
-  background: #0d1b35;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 61, 143, 0.2);
   border-left: 3px solid #ff3d8f;
   border-radius: 4px;
