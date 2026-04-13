@@ -4,6 +4,8 @@ import { useState } from "react";
 import "../Styles/hero.css";
 import Schedule from "../Components/schedule";
 import Eventscroll from "../Components/eventsscroll";
+import Footer from "../Components/Footer";
+import FAQ from "../Components/FAQ";
 
 export default function Hero() {
   const [text, setText] = useState(
@@ -182,6 +184,10 @@ Discover your true potential.`);
       <div className="planetpurple"></div>
 
       <div className="planetseacond"></div>
+
+      <FAQ />
+
+      <Footer />
     </>
   );
 }
